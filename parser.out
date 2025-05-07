@@ -1,0 +1,76 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    ID
+
+Grammar
+
+Rule 0     S' -> Primary
+Rule 1     Primary -> INTLIT
+Rule 2     Primary -> ( Primary )
+
+Terminals, with rules where they appear
+
+(                    : 2
+)                    : 2
+ID                   : 
+INTLIT               : 1
+error                : 
+
+Nonterminals, with rules where they appear
+
+Primary              : 2 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . Primary
+    (1) Primary -> . INTLIT
+    (2) Primary -> . ( Primary )
+
+    INTLIT          shift and go to state 2
+    (               shift and go to state 3
+
+    Primary                        shift and go to state 1
+
+state 1
+
+    (0) S' -> Primary .
+
+
+
+state 2
+
+    (1) Primary -> INTLIT .
+
+    $end            reduce using rule 1 (Primary -> INTLIT .)
+    )               reduce using rule 1 (Primary -> INTLIT .)
+
+
+state 3
+
+    (2) Primary -> ( . Primary )
+    (1) Primary -> . INTLIT
+    (2) Primary -> . ( Primary )
+
+    INTLIT          shift and go to state 2
+    (               shift and go to state 3
+
+    Primary                        shift and go to state 4
+
+state 4
+
+    (2) Primary -> ( Primary . )
+
+    )               shift and go to state 5
+
+
+state 5
+
+    (2) Primary -> ( Primary ) .
+
+    $end            reduce using rule 2 (Primary -> ( Primary ) .)
+    )               reduce using rule 2 (Primary -> ( Primary ) .)
+
