@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = "ID INTLIT\n    Primary : INTLIT \n            | '(' Primary ')'\n    "
+_lr_signature = "WhileStatementAND EQ FLOATLIT GE ID INTLIT LE NEQ OR WHILE\n    WhileStatement : WHILE '(' Expression ')' Statement\n    \n    Statement : '{' StatementList '}'\n              | Expression ';'\n    \n    StatementList : StatementList Statement\n                  | Statement\n    \n    Expression : Expression OR Conjunction\n               | Conjunction\n    \n    Conjunction : Conjunction AND Equality\n                | Equality\n    \n    Equality : Relation EQ Relation\n             | Relation NEQ Relation\n             | Relation\n    \n    Relation : Addition '<' Addition\n             | Addition '>' Addition\n             | Addition LE Addition\n             | Addition GE Addition\n             | Addition\n    \n    Addition : Addition '+' Term\n             | Addition '-' Term\n             | Term\n    \n    Term : Term '*' Factor\n         | Term '/' Factor\n         | Term '%' Factor\n         | Factor\n    \n    Factor : '-' Primary\n           | '!' Primary\n           | Primary\n    \n    Primary : ID\n            | INTLIT\n            | FLOATLIT \n            | '(' Expression ')'\n    "
     
-_lr_action_items = {'INTLIT':([0,3,],[2,2,]),'(':([0,3,],[3,3,]),'$end':([1,2,5,],[0,-1,-2,]),')':([2,4,5,],[-1,5,-2,]),}
+_lr_action_items = {'WHILE':([0,],[2,]),'$end':([1,37,52,55,],[0,-1,-3,-2,]),'(':([2,3,4,11,14,19,20,21,22,23,24,25,26,27,28,29,30,31,32,38,52,53,54,55,56,],[3,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,-3,4,-5,-2,-4,]),'-':([3,4,9,10,12,13,15,16,17,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,38,43,44,45,46,47,48,49,50,51,52,53,54,55,56,],[11,11,29,-20,-24,-27,-28,-29,-30,11,11,11,11,11,11,11,11,11,11,11,11,11,11,-25,-26,-31,11,29,29,29,29,-18,-19,-21,-22,-23,-3,11,-5,-2,-4,]),'!':([3,4,19,20,21,22,23,24,25,26,27,28,29,30,31,32,38,52,53,54,55,56,],[14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-3,14,-5,-2,-4,]),'ID':([3,4,11,14,19,20,21,22,23,24,25,26,27,28,29,30,31,32,38,52,53,54,55,56,],[15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,-3,15,-5,-2,-4,]),'INTLIT':([3,4,11,14,19,20,21,22,23,24,25,26,27,28,29,30,31,32,38,52,53,54,55,56,],[16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,-3,16,-5,-2,-4,]),'FLOATLIT':([3,4,11,14,19,20,21,22,23,24,25,26,27,28,29,30,31,32,38,52,53,54,55,56,],[17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,-3,17,-5,-2,-4,]),')':([5,6,7,8,9,10,12,13,15,16,17,18,33,34,35,39,40,41,42,43,44,45,46,47,48,49,50,51,],[19,-7,-9,-12,-17,-20,-24,-27,-28,-29,-30,35,-25,-26,-31,-6,-8,-10,-11,-13,-14,-15,-16,-18,-19,-21,-22,-23,]),'OR':([5,6,7,8,9,10,12,13,15,16,17,18,33,34,35,36,39,40,41,42,43,44,45,46,47,48,49,50,51,],[20,-7,-9,-12,-17,-20,-24,-27,-28,-29,-30,20,-25,-26,-31,20,-6,-8,-10,-11,-13,-14,-15,-16,-18,-19,-21,-22,-23,]),';':([6,7,8,9,10,12,13,15,16,17,33,34,35,36,39,40,41,42,43,44,45,46,47,48,49,50,51,],[-7,-9,-12,-17,-20,-24,-27,-28,-29,-30,-25,-26,-31,52,-6,-8,-10,-11,-13,-14,-15,-16,-18,-19,-21,-22,-23,]),'AND':([6,7,8,9,10,12,13,15,16,17,33,34,35,39,40,41,42,43,44,45,46,47,48,49,50,51,],[21,-9,-12,-17,-20,-24,-27,-28,-29,-30,-25,-26,-31,21,-8,-10,-11,-13,-14,-15,-16,-18,-19,-21,-22,-23,]),'EQ':([8,9,10,12,13,15,16,17,33,34,35,43,44,45,46,47,48,49,50,51,],[22,-17,-20,-24,-27,-28,-29,-30,-25,-26,-31,-13,-14,-15,-16,-18,-19,-21,-22,-23,]),'NEQ':([8,9,10,12,13,15,16,17,33,34,35,43,44,45,46,47,48,49,50,51,],[23,-17,-20,-24,-27,-28,-29,-30,-25,-26,-31,-13,-14,-15,-16,-18,-19,-21,-22,-23,]),'<':([9,10,12,13,15,16,17,33,34,35,47,48,49,50,51,],[24,-20,-24,-27,-28,-29,-30,-25,-26,-31,-18,-19,-21,-22,-23,]),'>':([9,10,12,13,15,16,17,33,34,35,47,48,49,50,51,],[25,-20,-24,-27,-28,-29,-30,-25,-26,-31,-18,-19,-21,-22,-23,]),'LE':([9,10,12,13,15,16,17,33,34,35,47,48,49,50,51,],[26,-20,-24,-27,-28,-29,-30,-25,-26,-31,-18,-19,-21,-22,-23,]),'GE':([9,10,12,13,15,16,17,33,34,35,47,48,49,50,51,],[27,-20,-24,-27,-28,-29,-30,-25,-26,-31,-18,-19,-21,-22,-23,]),'+':([9,10,12,13,15,16,17,33,34,35,43,44,45,46,47,48,49,50,51,],[28,-20,-24,-27,-28,-29,-30,-25,-26,-31,28,28,28,28,-18,-19,-21,-22,-23,]),'*':([10,12,13,15,16,17,33,34,35,47,48,49,50,51,],[30,-24,-27,-28,-29,-30,-25,-26,-31,30,30,-21,-22,-23,]),'/':([10,12,13,15,16,17,33,34,35,47,48,49,50,51,],[31,-24,-27,-28,-29,-30,-25,-26,-31,31,31,-21,-22,-23,]),'%':([10,12,13,15,16,17,33,34,35,47,48,49,50,51,],[32,-24,-27,-28,-29,-30,-25,-26,-31,32,32,-21,-22,-23,]),'{':([19,38,52,53,54,55,56,],[38,38,-3,38,-5,-2,-4,]),'}':([52,53,54,55,56,],[-3,55,-5,-2,-4,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'Primary':([0,3,],[1,4,]),}
+_lr_goto_items = {'WhileStatement':([0,],[1,]),'Expression':([3,4,19,38,53,],[5,18,36,36,36,]),'Conjunction':([3,4,19,20,38,53,],[6,6,6,39,6,6,]),'Equality':([3,4,19,20,21,38,53,],[7,7,7,7,40,7,7,]),'Relation':([3,4,19,20,21,22,23,38,53,],[8,8,8,8,8,41,42,8,8,]),'Addition':([3,4,19,20,21,22,23,24,25,26,27,38,53,],[9,9,9,9,9,9,9,43,44,45,46,9,9,]),'Term':([3,4,19,20,21,22,23,24,25,26,27,28,29,38,53,],[10,10,10,10,10,10,10,10,10,10,10,47,48,10,10,]),'Factor':([3,4,19,20,21,22,23,24,25,26,27,28,29,30,31,32,38,53,],[12,12,12,12,12,12,12,12,12,12,12,12,12,49,50,51,12,12,]),'Primary':([3,4,11,14,19,20,21,22,23,24,25,26,27,28,29,30,31,32,38,53,],[13,13,33,34,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,]),'Statement':([19,38,53,],[37,54,56,]),'StatementList':([38,],[53,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,7 +26,36 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> Primary","S'",1,None,None,None),
-  ('Primary -> INTLIT','Primary',1,'p_Primary','analisis.py',31),
-  ('Primary -> ( Primary )','Primary',3,'p_Primary','analisis.py',32),
+  ("S' -> WhileStatement","S'",1,None,None,None),
+  ('WhileStatement -> WHILE ( Expression ) Statement','WhileStatement',5,'p_WhileStatement','analisis.py',65),
+  ('Statement -> { StatementList }','Statement',3,'p_Statement','analisis.py',71),
+  ('Statement -> Expression ;','Statement',2,'p_Statement','analisis.py',72),
+  ('StatementList -> StatementList Statement','StatementList',2,'p_StatementList','analisis.py',78),
+  ('StatementList -> Statement','StatementList',1,'p_StatementList','analisis.py',79),
+  ('Expression -> Expression OR Conjunction','Expression',3,'p_Expression','analisis.py',88),
+  ('Expression -> Conjunction','Expression',1,'p_Expression','analisis.py',89),
+  ('Conjunction -> Conjunction AND Equality','Conjunction',3,'p_Conjunction','analisis.py',95),
+  ('Conjunction -> Equality','Conjunction',1,'p_Conjunction','analisis.py',96),
+  ('Equality -> Relation EQ Relation','Equality',3,'p_Equality','analisis.py',102),
+  ('Equality -> Relation NEQ Relation','Equality',3,'p_Equality','analisis.py',103),
+  ('Equality -> Relation','Equality',1,'p_Equality','analisis.py',104),
+  ('Relation -> Addition < Addition','Relation',3,'p_Relation','analisis.py',110),
+  ('Relation -> Addition > Addition','Relation',3,'p_Relation','analisis.py',111),
+  ('Relation -> Addition LE Addition','Relation',3,'p_Relation','analisis.py',112),
+  ('Relation -> Addition GE Addition','Relation',3,'p_Relation','analisis.py',113),
+  ('Relation -> Addition','Relation',1,'p_Relation','analisis.py',114),
+  ('Addition -> Addition + Term','Addition',3,'p_Addition','analisis.py',120),
+  ('Addition -> Addition - Term','Addition',3,'p_Addition','analisis.py',121),
+  ('Addition -> Term','Addition',1,'p_Addition','analisis.py',122),
+  ('Term -> Term * Factor','Term',3,'p_Term','analisis.py',128),
+  ('Term -> Term / Factor','Term',3,'p_Term','analisis.py',129),
+  ('Term -> Term % Factor','Term',3,'p_Term','analisis.py',130),
+  ('Term -> Factor','Term',1,'p_Term','analisis.py',131),
+  ('Factor -> - Primary','Factor',2,'p_Factor','analisis.py',137),
+  ('Factor -> ! Primary','Factor',2,'p_Factor','analisis.py',138),
+  ('Factor -> Primary','Factor',1,'p_Factor','analisis.py',139),
+  ('Primary -> ID','Primary',1,'p_Primary','analisis.py',145),
+  ('Primary -> INTLIT','Primary',1,'p_Primary','analisis.py',146),
+  ('Primary -> FLOATLIT','Primary',1,'p_Primary','analisis.py',147),
+  ('Primary -> ( Expression )','Primary',3,'p_Primary','analisis.py',148),
 ]
