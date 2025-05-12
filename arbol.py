@@ -12,6 +12,9 @@ class Literal(ASTNode):
         self.value = value
         self.type = type
 
+    def __repr__(self):
+        return f"Literal({self.value}, {self.type})"
+
     def accept(self, visitor: Visitor):
         visitor.visit_literal(self)
 
